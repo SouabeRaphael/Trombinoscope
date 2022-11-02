@@ -1,3 +1,1 @@
-<?php include './inc/header.php';
-
-?>
+<?php header('Location: /trombinoscope/vue/dashboard.php');?>

@@ -1,0 +1,1 @@
+<?php header('Location: /trombinoscope/vue/home_page.php');?>

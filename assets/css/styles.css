@@ -38,7 +38,6 @@ body {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 30px;
 }
 
@@ -49,14 +48,19 @@ body {
   text-decoration: none;
 }
 
+.item-nav:hover{
+  color: white;
+}
+
+
 /* ------------------------------------------------------------------------------------------------------------------- */
   /* Design content */
 /* ------------------------------------------------------------------------------------------------------------------- */
 
-/* home-page */
+/* dashboard */
 /* ---------------------------------- */
 
-.content-home-page{
+.content-dashboard{
   width: 100vw;
   height: 100vh;
   background-color: #1C1C1C;
@@ -65,12 +69,12 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.content-home-page p{
+.content-dashboard p{
   color: white;
   font-size: 70px;
   font-family: 'marshmallow-fluff';
 }
-.content-home-page a{
+.content-dashboard a{
   text-decoration: none;
   color: white;
   transform: translateY(100px);
@@ -80,8 +84,9 @@ body {
 
 /* login page*/
 /* ---------------------------------- */
-.navbar{
+.navbar-login{
   justify-content: center;
+  text-decoration: none;
 }
 
 .content-login-page{
@@ -94,14 +99,71 @@ body {
   align-items: center;
 }
 
-.identifier-fields{
+.content-login-page form{
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-login-page h1{
+  color: white;
+  font-size: 31px;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.form-login{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  color: white;
+  margin-top: 20px;
+  color: #1B2432;
 }
 
-/* Dashboard */
+.form-login label{
+  font-size: 18px;
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.fiel-password{
+  margin-top: 40px;
+}
+
+.form-login input[type=text]{
+  width: 300px;
+  height: 55px;
+  color: white;
+  background-color: #2B2B2F;
+  border: none;
+  border-radius: 10px;
+  padding-left: 15px;
+  /* padding: 8px 20px; */
+}
+.form-login input[type=text]::placeholder{
+  color: white;
+  opacity: 50%;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.btn-login{
+  font-size: 18px;
+  color: white;
+  margin-top: 40px;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 8px 46px;
+  background-color: transparent;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+/* home_page */
 /* ---------------------------------- */
 .page-content{
   width: 100%;
@@ -122,7 +184,7 @@ body {
 }
 
 .school-level{
-  font-family: forma-djr-display, sans-serif;
+  font-family: 'forma-djr-display, sans-serif';
   color: white;
   font-size: 50px;
   transform: translateY(50px);
@@ -147,6 +209,15 @@ body {
   opacity: 24%;
   margin: auto;
   font-size: 18px;
+}
+
+.end-page{
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
 }
 
 .add-school{
@@ -179,11 +250,103 @@ body {
   width: 45px;
 }
 
-.end-page{
-  height: 25%;
+/* pop-up add grade */
+/* ---------------------------------- */
+
+.section_add_grade{
   width: 100%;
+  height: 100vh;
+  position: fixed;
+  background:rgba(255,255,255, 0.3);
+  z-index: 5;
+  visibility: hidden;
+}
+.section_add_grade.active{
+  visibility: visible;
+}
+
+.pop_up_add_grade{
+  position: absolute;
+  width: 100%;
+  height: 400px;
+  bottom: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.separator-top{
+  width: 40px;
+  height: 2px;
+  background-color: black;
+  opacity: 40%;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.pop_up_add_grade form{
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
+}
+
+.form-grade{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40px;
+  color: #1B2432;
+}
+
+.form-grade label{
+  font-size: 18px;
+  color: black;
+  font-family: 'Roboto';
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.form-grade label::after{
+  content: '';
+  position:relative;
+  top: 5px;
+  left: 0;
+  width: 25%;
+  height: 2px;
+  display: flex;
+  background-color: black;
+  transition: 0.3s;
+}
+
+.form-grade input[type=text]{
+  width: 300px;
+  height: 55px;
+  color: white;
+  background-color: #2B2B2F;
+  border: none;
+  border-radius: 10px;
+  padding-left: 15px;
+  /* padding: 8px 20px; */
+}
+.form-grade input[type=text]::placeholder{
+  color: white;
+  opacity: 50%;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.btn_grade{
+  width: 300px;
+  height: 55px;
+  font-size: 18px;
+  color: white;
+  background-color: #0B6DE4;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 45px;
+  font-family: 'Roboto';
+  font-weight: 400;
 }

@@ -1,4 +1,4 @@
-<?php include_once '../inc/header.php';?>
+<?php require_once '../inc/header.php';?>
 <header class="header">
     <div class="content-header">
         <nav class="navbar navbar-login">
@@ -8,11 +8,19 @@
 </header>
 <main class="content-login-page">
     <h1>Se connecter</h1>
-    <form>
-        <div class="identifier-fields">
-            <label for="identifier">Identifiant:</label>
-            <input type="text" name="identifier" placeholder="Email">
+    <form action="../controller/login_controller.php" method="POST">
+
+        <div class="fiel-identifiant form-login" >
+            <label for="identifiant">Identifiant:</label>
+            <input type="text" name="identifiant" class="item-form" placeholder="Identifiant">
         </div>
-    </form>
+        
+        <div class="fiel-password form-login">
+            <label for="password">Mot de passe:</label>
+            <input type="text" name="password" class="item-form" placeholder="Passwold">
+        </div>
+       
+        <button type="submit" name="btn" class="btn-login">Valider</button>
+    </form> 
 </main>
-<?php include_once '../inc/footer.php';?>
+<?php require_once '../inc/footer.php';?>
