@@ -134,7 +134,7 @@ body {
   margin-top: 40px;
 }
 
-.form-login input[type=text]{
+.form-login input[type=password], input[type=email]{
   width: 300px;
   height: 55px;
   color: white;
@@ -144,7 +144,7 @@ body {
   padding-left: 15px;
   /* padding: 8px 20px; */
 }
-.form-login input[type=text]::placeholder{
+.form-login input[type=password]::placeholder, input[type=email]::placeholder{
   color: white;
   opacity: 50%;
   font-family: 'Roboto';
@@ -166,6 +166,7 @@ body {
 /* home_page */
 /* ---------------------------------- */
 .page-content{
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #1C1C1C;
@@ -173,21 +174,55 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.section-shool-level{
-  width: 100%;
+.container-school-level{
+  position: relative;
+  width: 400px;
   height: 60%;
+  transform: translateY(150px);
+  overflow: hidden;
+}
+
+.container-slide{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 2000%;
+  height: 100%;
+  display: flex;
+}
+.container-slide.glissade{
+  transition: left 0.4s ease-out;
+}
+
+.item-shool-level{
+  position: relative;
+  width: 400px;
+  height: 300px;
+  font-family: 'forma-djr-display, sans-serif';
+  color: white;
+  font-size: 50px;
+  transform: translateY(50px);
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.school-level{
-  font-family: 'forma-djr-display, sans-serif';
+.school-level a{
   color: white;
-  font-size: 50px;
-  transform: translateY(50px);
+  text-decoration: none;
+}
+
+.bottom-page{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .content-swipe{
@@ -212,7 +247,7 @@ body {
 }
 
 .end-page{
-  height: 25%;
+  height: 60%;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -254,9 +289,12 @@ body {
 /* ---------------------------------- */
 
 .section_add_grade{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 100vh;
-  position: fixed;
   background:rgba(255,255,255, 0.3);
   z-index: 5;
   visibility: hidden;
@@ -265,13 +303,33 @@ body {
   visibility: visible;
 }
 
-.pop_up_add_grade{
+.container_pop_up{
   position: absolute;
   width: 100%;
   height: 400px;
   bottom: 0;
-  background-color: white;
   z-index: 10;
+  transform: translateY(400px);
+  transition: all 330ms ease-out;
+  visibility: hidden;
+}
+
+.container_pop_up.active{
+  visibility: visible;
+  transform: translateY(0px);
+  transition: all 330ms ease-out;
+}
+
+.pop_up_add_grade{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
 }
 
 .separator-top{
@@ -294,6 +352,7 @@ body {
 }
 
 .form-grade{
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -322,6 +381,7 @@ body {
 }
 
 .form-grade input[type=text]{
+  position: relative;
   width: 300px;
   height: 55px;
   color: white;
@@ -330,6 +390,7 @@ body {
   border-radius: 10px;
   padding-left: 15px;
   /* padding: 8px 20px; */
+  z-index: 50;
 }
 .form-grade input[type=text]::placeholder{
   color: white;
