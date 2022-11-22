@@ -8,7 +8,7 @@
             <?php foreach($array_grade as $grade): ?>
                 <?php $id++; ?>
                 <div class="item-shool-level" id="<?php echo $id?>">
-                    <p class="school-level"><a href="#"><?php echo $grade['grade_name'] ?></a></p>
+                    <p class="school-level"><a href="../vue/archive_student.php?grade_id=<?php echo $grade['grade_id']?>"><?php echo $grade['grade_name'] ?></a></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -20,7 +20,7 @@
             <div class="arrow arrow-right"><img src="../assets/svg/icon-arrow.svg"></div>
         </div>
         <div class="end-page">
-            <button class="add-school">Ajouté</button>
+            <button class="btn-add add-grade">Ajouté</button>
             <div class="actif-section">
                 <?php for($i = 1; $i <= count($array_grade); $i++): ?>
                     <a href="#"><div class="item-landmark" id="<?php echo $i; ?>"></div></a>

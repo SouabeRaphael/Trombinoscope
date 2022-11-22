@@ -20,8 +20,19 @@
             <label for="password">Mot de passe :</label>
             <input type="password" name="password" class="item-form" placeholder="Passwold">
         </div>
+        <?php
+            if(isset($_GET['error'])){
+                if($_GET['error'] == 0){
+                    echo "<p class='mt-3' style='color:red'>Veuillez remplir les champs</p>";
+                }
+                if($_GET['error'] == -1){
+                    echo "<p class='mt-3' style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                }
+            }
+        ?>
        
         <button type="submit" name="btn" class="btn-login">Valider</button>
     </form> 
+    <p class="link-signup">Vous n’avez pas de compte ?  <a href="./signup.php"><strong> Créer un compte</strong></a></p>
 </main>
 <?php require_once '../inc/footer.php';?>

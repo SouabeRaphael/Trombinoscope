@@ -1,7 +1,7 @@
 // @@@
 // pop up add grade
 // @@@
-let btn_add_grade = document.querySelector(".add-school");
+let btn_add_grade = document.querySelector(".add-grade");
 let section_add_grade = document.querySelector(".section_add_grade");
 let container_pop_up = document.querySelector(".container_pop_up");
 

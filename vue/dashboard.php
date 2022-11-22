@@ -3,4 +3,4 @@
         <p>T</p>
         <a href="./login.php" class="link-login">Se connecter</a>
     </main>
-<?php require_once './inc/footer.php';?>
+<?php require_once '../inc/footer.php';?>

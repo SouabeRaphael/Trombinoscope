@@ -82,7 +82,7 @@ body {
   font-size: 18px;
 }
 
-/* login page*/
+/* login / signup page*/
 /* ---------------------------------- */
 .navbar-login{
   justify-content: center;
@@ -97,6 +97,18 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.content-signup-page{
+  width: 100%;
+  height: auto;
+  background-color: #1C1C1C;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 160px;
+  padding-bottom: 50px;
 }
 
 .content-login-page form{
@@ -134,7 +146,7 @@ body {
   margin-top: 40px;
 }
 
-.form-login input[type=password], input[type=email]{
+.item-form{
   width: 300px;
   height: 55px;
   color: white;
@@ -142,9 +154,9 @@ body {
   border: none;
   border-radius: 10px;
   padding-left: 15px;
-  /* padding: 8px 20px; */
+  appearance: none;
 }
-.form-login input[type=password]::placeholder, input[type=email]::placeholder{
+.item-form::placeholder{
   color: white;
   opacity: 50%;
   font-family: 'Roboto';
@@ -154,13 +166,26 @@ body {
 .btn-login{
   font-size: 18px;
   color: white;
-  margin-top: 40px;
+  margin-top: 20px;
   border: 1px solid white;
   border-radius: 20px;
   padding: 8px 46px;
   background-color: transparent;
   font-family: 'Roboto';
   font-weight: 400;
+}
+
+.link-signup{
+  position: absolute;
+  color: white;
+  bottom: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.link-signup a{
+  text-decoration: none;
+  color: white;
 }
 
 /* home_page */
@@ -255,7 +280,7 @@ body {
   flex-direction: column;
 }
 
-.add-school{
+.btn-add{
   border: 1px solid white;
   border-radius: 20px;
   color: white;
@@ -411,3 +436,241 @@ body {
   font-family: 'Roboto';
   font-weight: 400;
 }
+
+/* archive student page*/
+/* ---------------------------------- */
+
+.page-content-archive-student{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-archive-student{
+  min-height: 100vh;
+  padding-bottom: 100px;
+  align-self: flex-start;
+}
+
+.container-archive-student, .container-student{
+  height: 100%;
+  width: 100%;
+}
+
+.top-page-trombi{
+  width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-top: 110px !important;
+}
+
+.container-icon-arrow{
+  margin-left: 25px;
+}
+
+.title-grade{
+  text-align: center;
+  color: white;
+}
+
+.title-grade h1{
+  font-family: 'forma-djr-display, sans-serif';
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* card students */
+.container-card-student{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.img-profil{
+  width: 110px;
+  height: 110px;
+  margin: auto;
+}
+
+.img-profil img{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 100px;
+  border: 2px solid white;
+  margin: auto;
+}
+
+.separator-bottom-img-profil{
+  width: 90px;
+  height: 1px;
+  background-color: white;
+  margin: auto;
+  margin-top: 16px;
+}
+
+.name-student{
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  border: none;
+}
+.name-student a{
+  color: white;
+  text-decoration: none;
+}
+
+.specialities-student{
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  margin-top: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  margin-bottom: 0;
+}
+
+.container-btn-add-student{
+  height: 90px;
+  width: 100%;
+  background-color: #1C1C1C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.add-student{
+  margin: 50px 0 ;
+}
+
+
+/* student page*/
+/* ---------------------------------- */
+
+.container-detail-student{
+  width: 85%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+
+.location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.location-student{
+  margin: 0;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  margin-left: 15px;
+}
+
+.section-info-horizontal{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.column-age, .column-phone, .column-age{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section-info-horizontal .label-item{
+  color: white;
+  opacity: 60%;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.section-info-horizontal .value-item{
+  color: white;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.section-info-horizontal .separator-vertical{
+  width: 1px;
+  height: 40px;
+  background-color: white;
+  margin: 0 30px;
+}
+
+.container-description{
+  width: 100%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.title-description{
+  display: inline-block;
+  color: white;
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 20px;
+}
+.title-description::after{
+  content: '';
+  position:relative;
+  top: 5px;
+  left: 0;
+  width: 70%;
+  height: 2px;
+  display: flex;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.description{
+  color: white;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 20px;
+  line-height: 23px;
+}
+
+.container-email{
+  color: white;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.container-email .email b{
+  font-weight: 500;
+}
+

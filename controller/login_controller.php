@@ -1,19 +1,18 @@
 <?php 
-error_reporting( E_ALL );
 require_once __DIR__ . '/../libraries/db.php';
 require_once __DIR__ . '/../functions/functions.php';
 
 // pretty_print_r($array_users);
 
 // @@@
-// fonction qui verifie sur le btn à été appuyer et si les champ son declaré
+// fonction qui verifie si les champ son declaré
 // @@@
 function verify_post(){
     return isset($_POST['email']) && isset($_POST['password']);
 }
 
 // @@@
-// fonction qui verifie sur le btn à été appuyer et si les champ son vide
+// fonction qui verifie si les champ son vide
 // @@@
 function verify_empty_post(){
     return isset($_POST['email']) && empty($_POST['password']);
@@ -23,20 +22,21 @@ function verify_empty_post(){
 // fontion qui crée un url avec en parametre les erreur
 // @@@
 function redirect_error($result){
-    header("Location: http://php.test/TP-upload-file/part2/index.php?error=$result"); 
+    header("Location: http://localhost:8888/trombinoscope/vue/login.php?error=$result"); 
 }
 
 // @@@
 // fonction qui envoie l'utilisatieur sur le dashboard si la connection est bonne
 // @@@
-function redirect_dashboard_controller(){
-    header("Location: http://php.test/TP-upload-file/part2/controllers/dashboard-controller.php"); 
+function redirect_home_page(){
+    header("Location: http://localhost:8888/trombinoscope/vue/home_page.php"); 
 }
 
 function get_credentials() {
     $db = db_connect();
     $sql = "SELECT email, password, users_id, first_name FROM `infos_users` NATURAL JOIN `users`";
     $credentialsStmt = $db->query($sql);
+    $credentialsStmt->execute();
     $credentials = $credentialsStmt->fetchAll(PDO::FETCH_ASSOC);
     
     return $credentials;
@@ -83,30 +83,34 @@ function create_session($username, $id){
 }
 
 function get_verify($credentials){
-    $message = '';
-
+    
+    $result = 0;
     if(verify_post()){
         if(verify_credentials($credentials)){
             $username = get_username($credentials);
             $id = get_id($credentials);
-            echo $id;
+            // echo $id;
             create_session($username, $id);
-            $message = 'ok';
+            redirect_home_page();
         }
         else{
-            $message = 'les champs sont mauvais';
+            
+            $result = -1;
+            redirect_error($result);
         }
     }
     if(verify_empty_post()){
-        $message = 'les champs sont vides';
+
+        $result = 0;
+        redirect_error($result);
     }
-    return $message;
+    return $result;;
 }
-echo get_verify($credentials);
+get_verify($credentials);
 
 
 // pretty_print_r(get_credentials());
 // verify_credentials($credentials);
-echo session_status();
+// echo session_status();
 
 ?>
