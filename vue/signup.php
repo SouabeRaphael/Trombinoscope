@@ -4,13 +4,13 @@
 <header class="header">
     <div class="content-header">
         <nav class="navbar navbar-login">
-            <a href="#" class="item-nav logo">T</a>
+            <a href="./home_page.php" class="item-nav logo">T</a>
         </nav>
     </div>
 </header>
 <main class="content-login-page content-signup-page">
     <h1>S'inscrire</h1>
-    <form action="../controller/signup_controller.php" method="POST">
+    <form action="../controller/signup_controller.php" method="POST" enctype="multipart/form-data">
 
         <div class="fiel-firstname form-login" >
             <label for="first_name">Prénom :</label>
@@ -66,12 +66,23 @@
             </select>
         </div>
 
+        <div class="fiel-image form-login">
+            <label for="image">Image :</label>
+            <input type="file" name="image" class="item-form" placeholder="Image">
+        </div>
+
+        <div class="fiel-description form-login">
+            <label for="description">Description :</label>
+            <textarea type="text" name="description" class="item-form" placeholder="Description"></textarea>
+        </div>
+
         <div class="fiel-password form-login">
             <label for="password">Mot de passe :</label>
             <input type="password" name="password" class="item-form" placeholder="Mot de passe">
         </div>
        
         <button type="submit" name="btn" class="btn-login">Valider</button>
-    </form> 
+    </form>
+    <p class="link-connect">Vous avez un compte ?  <a href="./login.php"><strong> Se connecter</strong></a></p>
 </main>
 <?php require_once '../inc/footer.php';?>

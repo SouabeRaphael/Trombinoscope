@@ -188,6 +188,18 @@ body {
   color: white;
 }
 
+.link-connect{
+  position: relative;
+  color: white;
+  bottom: 0;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.link-connect a{
+  text-decoration: none;
+  color: white;
+}
 /* home_page */
 /* ---------------------------------- */
 .page-content{
@@ -674,3 +686,22 @@ body {
   font-weight: 500;
 }
 
+.container-btn-delete{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.btn_delete{
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  padding: 4px 25px;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 40px;
+}

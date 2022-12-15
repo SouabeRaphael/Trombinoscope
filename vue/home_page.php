@@ -1,5 +1,7 @@
 <?php require_once '../inc/navbar.php';?>
 <?php require_once '../controller/home_page_controller.php';?>
+<?php require_once '../controller/is_connect.php';?>
+
 
 <main class="page-content">
     <div class="container-school-level top-page">

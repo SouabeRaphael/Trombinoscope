@@ -23,8 +23,9 @@
         <div class="container-detail-student">
             <?php foreach(get_students($student_id) as $user): ?>
             <figure class="img-profil">
-            <?php foreach(get_img($user['image_id']) as $image): ?>
-                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode( $image['image'] ) . '" />';; ?>
+
+            <?php foreach(get_img($user['users_id']) as $image): ?>
+                <img src="data:image/jpeg;base64,<?=$image['image'] ?>">
             <?php endforeach; ?>
             </figure>
 
@@ -64,6 +65,11 @@
             <div class="container-email">
                 <p class="email"><b>Email : </b><?php echo $user['email']; ?></p>
             </div>
+
+            <div class="container-btn-delete">
+                <a href="../controller/delete_controller.php?grade_id=<?php echo $id;?>&student_id=<?php echo $student_id?>"><button class="btn_delete">Supprimer</button></a>  
+            </div>
+            
             <?php endforeach; ?>
         </div>
     </div>

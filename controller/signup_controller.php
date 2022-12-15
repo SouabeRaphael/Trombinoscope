@@ -1,8 +1,13 @@
-<?php 
+<?php
+
+use LDAP\Result;
+
 require_once __DIR__ . '/../libraries/db.php';
 require_once __DIR__ . '/../functions/functions.php';
 
-
+// @@@
+// function qui recupere tout les element de la table grade
+// @@@
 function get_grade(){
 
     $db = db_connect();
@@ -20,6 +25,9 @@ function get_grade(){
     return $Grade;
 }
 
+// @@@
+// function qui recupere tout les element de la table specialisation
+// @@@
 function get_specialities(){
 
     $db = db_connect();
@@ -44,7 +52,7 @@ function verify_post(){
     return isset($_POST['first_name']) && isset($_POST['last_name']) 
     && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['city']) 
     && isset($_POST['birth']) && isset($_POST['grade']) && isset($_POST['speciality']) 
-    && isset($_POST['password']);
+    && isset($_POST['password']) && isset($_POST['description']);
 }
 
 // @@@
@@ -54,23 +62,26 @@ function verify_empty_post(){
     return empty($_POST['first_name']) && empty($_POST['last_name']) 
     && empty($_POST['email']) && empty($_POST['tel']) && empty($_POST['city']) 
     && empty($_POST['birth']) && empty($_POST['grade']) && empty($_POST['speciality']) 
-    && empty($_POST['password']);
+    && empty($_POST['password']) && empty($_POST['description']);
 }
 
 // @@@
 // fontion qui crée un url avec en parametre les erreur
 // @@@
-function redirect_error($result){
-    header("Location: http://localhost:8888/trombinoscope/vue/signup.php?error=$result"); 
+function redirect_error(){
+    return header("Location: http://localhost:8888/trombinoscope/vue/signup.php"); 
 }
 
 // @@@
 // fonction qui envoie l'utilisatieur sur le dashboard si la connection est bonne
 // @@@
 function redirect_home_page(){
-    header("Location: http://localhost:8888/trombinoscope/vue/home_page.php"); 
+    return header("Location: http://localhost:8888/trombinoscope/vue/home_page.php"); 
 }
 
+// @@@
+// function qui formate la date pour pouvoir la changer par la suite en age
+// @@@
 function change_date(){
     $oldDate = new DateTime($_POST['birth']);
     $newDate = $oldDate->format('Y-m-d 00:00:00');
@@ -78,6 +89,9 @@ function change_date(){
     return $newDate;
 }
 
+// @@@
+// function qui calcule l'age en fonction de la date
+// @@@
 function calc_age($age){
     $birth = $age;
     $today = date('Y-m-d');
@@ -86,6 +100,9 @@ function calc_age($age){
     return $diff->format('%y');
 }
 
+// @@@
+// function qui va chercher id du users
+// @@@
 function get_id_users($first_name, $last_name) {
 
     $db = db_connect();
@@ -105,6 +122,30 @@ function get_id_users($first_name, $last_name) {
     return $id;
 }
 
+// @@@
+// function qui va chercher id du de l'image
+// @@@
+function get_id_image($id) {
+
+    $db = db_connect();
+    $sql = <<<EOD
+    SELECT
+        image_id
+    FROM
+        `images`
+    WHERE user_id = $id
+    EOD;
+    $imageIdStmt = $db->query($sql);
+    $imageIdStmt->execute();
+    $imageId = $imageIdStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $id = $imageId[0]['image_id'];
+    return $id;
+}
+
+// @@@
+// function qui va permettre de verifier les champs à laide de regex
+// @@@
 function verify_regex($regex, $name){
     if(preg_match($regex, $name)){
         return true;
@@ -114,6 +155,29 @@ function verify_regex($regex, $name){
     }
 }
 
+// @@@
+// function qui mes les valeur de l'image dans des variable
+// @@@
+function get_file_tmp_name(){
+    $result = $_FILES['image']['tmp_name'];
+    return $result;
+}
+function get_file_name(){
+    $result = $_FILES['image']['name'];
+    return $result;
+}
+function get_file_size(){
+    $result= $_FILES['image']['size'];
+    return $result;
+}
+function get_file_type(){
+    $result = $_FILES['image']['type'];
+    return $result;
+}
+
+// @@@
+// function qui va crée les users dans la base de donner mysql
+// @@@
 function create_users(){
 
     $db = db_connect();
@@ -127,17 +191,35 @@ function create_users(){
     $age = calc_age(change_date());
     $speciality = $_POST['speciality'];
     $password = $_POST['password'];
+    $description = $_POST['description'];
 
     $addusers = "INSERT INTO users (last_name, first_name, grade_id) VALUES ('$lastname', '$firstname', '$grade')";
     $db->exec($addusers);
 
-    $id = get_id_users($firstname, $lastname);
+    $user_id = get_id_users($firstname, $lastname);
+    
+
+    // print_r($_FILES);
+    $image_name = get_file_name();
+    $image_tmp_name = get_file_tmp_name();
+
+    move_uploaded_file($image_tmp_name, $image_name);
+    $image_content = file_get_contents($_FILES['image']['name']);
+    $image_content = base64_encode($image_content);
+
+    $addimage = "INSERT INTO images (image, user_id) VALUES ('$image_content', '$user_id')";
+    $db->exec($addimage);
+    
+    $img_id = get_id_image($user_id);
 
     $addinfo = "INSERT INTO infos_users (age, email, phone, Location, image_id, users_id, spe_id, password, description) 
-    VALUES ('$age', '$email', '$tel', '$city', '1', '$id', '$speciality', '$password', 'test')";
+    VALUES ('$age', '$email', '$tel', '$city', '$img_id', '$user_id', '$speciality', '$password', '$description')";
     $db->exec($addinfo);
 }
 
+// @@@
+// function qui verifie les champs des input à l'aide de regex
+// @@@
 function verify_all(){
     if(verify_post()){
         $name_regex = '/^[a-zA-Z-]+$/';
@@ -151,18 +233,19 @@ function verify_all(){
         && verify_regex($city_regex, $_POST['city']) && verify_regex($city_regex, $_POST['city'])
         && verify_regex($password_regex, $_POST['password'])) {
             create_users();
+            // redirect_home_page();
             echo 'oui';
         }
         else{
-            echo 'non';
+        //    $result = 'Erreur sur un ou plusieur champs';
+           echo 'nan';
         }
 
     }
     if(verify_empty_post()){
-        // $result = 0;
-        echo 'champs vide';  
+        // $result =  'Champs non rempli';
+        // header("Location: ./signup.php");
     }
-
 }
 verify_all();
 

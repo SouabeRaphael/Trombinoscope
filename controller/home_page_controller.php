@@ -1,6 +1,16 @@
 <?php 
 require_once __DIR__ . '/../libraries/db.php';
 
+// function if_is_connect() {
+//     if(session_status() == PHP_SESSION_NONE) {
+//         session_start();
+//     }
+//     return !empty($_SESSION['id']);
+// }
+
+// @@@
+// fonction qui va chercher tout les elements de la tables grades
+// @@@
 function get_grade(){
 
     $db = db_connect();
@@ -25,7 +35,9 @@ function get_verify(){
     return(isset($_POST['grade']) and !empty($_POST['grade']));
 }
 
+// @@@
 // fonction qui ajoute l'utilisateur à la table `user`
+// @@@
 function get_verify_grade(){
     if(get_verify()){
         $grade = $_POST['grade'];

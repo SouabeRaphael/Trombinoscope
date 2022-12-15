@@ -76,16 +76,16 @@ function get_spe($spe_id){
     return $spe;
 }
 
-function get_img($img_id){
+function get_img($user_id){
 
     $db = db_connect();
 
     $sql = <<<EOD
     SELECT
-        *
+        image
     FROM
         `images`
-    WHERE image_id = $img_id
+    WHERE user_id = $user_id
     EOD;
     $userStmt = $db->query($sql);
     $userStmt->execute();

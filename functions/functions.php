@@ -6,6 +6,9 @@ function pretty_print_r($var): void{
     echo '<pre>'.print_r($var, true).'</pre>';
 }
 
+// @@@
+// function qui va chercher tout les elements de la table ’infos_users’
+// @@@
 function get_info_users(){
 
     $db = db_connect();
@@ -23,7 +26,5 @@ function get_info_users(){
     return $users;
 }
 $array_users = get_info_users();
-
-
 
 ?>

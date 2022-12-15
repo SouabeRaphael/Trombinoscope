@@ -22,8 +22,8 @@
             <?php foreach(get_students_grade($id) as $user): ?>
             <div class="card-item-student" id="<?php echo $user['users_id']; ?>">
                 <figure class="img-profil">
-                <?php foreach(get_img($user['image_id']) as $image): ?>
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode( $image['image'] ) . '" />';; ?>
+                <?php foreach(get_img($user['users_id']) as $image): ?>
+                    <img src="data:image/jpeg;base64,<?=$image['image'] ?>">
                 <?php endforeach; ?>
                 </figure>
 

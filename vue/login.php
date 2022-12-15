@@ -1,9 +1,11 @@
 <?php require_once '../inc/header.php';?>
+<?php require_once '../controller/home_page_controller.php';?>
+<?php require_once '../controller/is_connect.php';?>
 
 <header class="header">
     <div class="content-header">
         <nav class="navbar navbar-login">
-            <a href="#" class="item-nav logo">T</a>
+            <a href="./home_page.php" class="item-nav logo">T</a>
         </nav>
     </div>
 </header>
